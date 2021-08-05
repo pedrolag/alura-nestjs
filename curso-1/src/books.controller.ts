@@ -10,27 +10,27 @@ export class BooksController {
     }
 
     @Get()
-    selectAll(): Book[] {
+    async selectAll(): Promise<Book[]> {
         return this.booksService.selectAll();
     }
 
     @Get(':id')
-    select(@Param() params): Book {
+    async select(@Param() params): Promise<Book> {
         return this.booksService.select(params.id);
     }
 
     @Post()
-    insert(@Body() book: Book): void {
+    async insert(@Body() book: Book) {
         this.booksService.insert(book);
     }
 
     @Put()
-    update(@Body() book: Book): Book {
+    async update(@Body() book: Book): Promise<[number, Book[]]> {
         return this.booksService.update(book);
     }
 
     @Delete(':id')
-    delete(@Param() params): void {
+    async delete(@Param() params) {
         this.booksService.delete(params.id);
     }
 
